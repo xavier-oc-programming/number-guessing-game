@@ -33,7 +33,10 @@ def _run_game(difficulty: Difficulty) -> None:
 
     while not state.over:
         print(f"{Colors.YELLOW}Turns remaining: {state.turns_remaining}{Colors.RESET}")
-        raw = input("Your guess: ").strip()
+        raw = input("Your guess (q to quit): ").strip()
+        if raw.lower() == "q":
+            clear()
+            sys.exit(0)
         if not raw.lstrip("-").isdigit():
             print_error("Please enter a whole number.")
             continue
@@ -49,7 +52,7 @@ def _run_game(difficulty: Difficulty) -> None:
         elif result == GuessResult.GAME_OVER:
             print_error(f"\nOut of turns! The answer was {state.answer}.")
 
-    print(f"\n{Colors.DIM}↑ arrow = menu   Enter = play again{Colors.RESET}")
+    print(f"\n{Colors.DIM}↑ arrow = menu   Enter = play again   q = quit{Colors.RESET}")
     while True:
         ch = get_keypress()
         if ch == "\x1b[A":       # up arrow → back to menu
@@ -57,6 +60,9 @@ def _run_game(difficulty: Difficulty) -> None:
         elif ch in ("\r", "\n"): # Enter → replay same difficulty
             _run_game(difficulty)
             return
+        elif ch == "q":
+            clear()
+            sys.exit(0)
 
 
 def main() -> None:
