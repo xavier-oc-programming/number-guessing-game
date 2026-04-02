@@ -15,12 +15,12 @@ Build a number guessing game that demonstrates Python scope concepts.
 
 ### Scope concepts covered
 
-| Concept | Description |
-|---|---|
-| Global constants | `EASY_LEVEL_TURNS = 10` — ALL_CAPS, set once, never modified |
-| `global` keyword | Modifying a global variable inside a function (and why to avoid it) |
-| Block scope | Python has no block scope; variables in `if`/`for`/`while` live at function level |
-| LEGB rule | Local → Enclosing → Global → Built-in lookup order |
+| Concept          | Description                                                                       |
+| ---------------- | --------------------------------------------------------------------------------- |
+| Global constants | `EASY_LEVEL_TURNS = 10` — ALL_CAPS, set once, never modified                      |
+| `global` keyword | Modifying a global variable inside a function (and why to avoid it)               |
+| Block scope      | Python has no block scope; variables in `if`/`for`/`while` live at function level |
+| LEGB rule        | Local → Enclosing → Global → Built-in lookup order                                |
 
 ### ASCII art source
 
