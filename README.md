@@ -28,9 +28,9 @@ you were too high or too low. You win by guessing correctly before your turns
 run out.
 
 | Difficulty | Turns |
-|---|---|
-| Easy | 10 |
-| Hard | 5 |
+| ---------- | ----- |
+| Easy       | 10    |
+| Hard       | 5     |
 
 The optimal strategy (binary search — always guess the midpoint) solves any
 game in at most **7 guesses**, so Hard mode is beatable with perfect play.
@@ -54,12 +54,12 @@ python advanced/main.py
 
 ## Controls
 
-| Input | Effect |
-|---|---|
-| A number + Enter | Submit a guess |
-| `q` + Enter | Quit immediately (works at any prompt) |
-| Enter (end of game) | Play again with the same difficulty |
-| ↑ arrow (end of game) | Return to the mode selection menu |
+| Input                 | Effect                                 |
+| --------------------- | -------------------------------------- |
+| A number + Enter      | Submit a guess                         |
+| `q` + Enter           | Quit immediately (works at any prompt) |
+| Enter (end of game)   | Play again with the same difficulty    |
+| ↑ arrow (end of game) | Return to the mode selection menu      |
 
 ---
 
@@ -127,17 +127,17 @@ user types a number
 
 Holds every constant and multi-state flag used across the project.
 
-| Name | Type | Value | Purpose |
-|---|---|---|---|
-| `MIN_NUMBER` | `int` | `1` | Lower bound of the guessing range |
-| `MAX_NUMBER` | `int` | `100` | Upper bound of the guessing range |
-| `EASY_TURNS` | `int` | `10` | Turns allowed on Easy difficulty |
-| `HARD_TURNS` | `int` | `5` | Turns allowed on Hard difficulty |
-| `TYPEWRITER_DELAY` | `float` | `0.004` | Seconds per character in logo animation |
-| `DIVIDER_CHAR` | `str` | `─` | Character used to draw horizontal rules |
-| `DIVIDER_WIDTH` | `int` | `52` | Width of horizontal rules in characters |
-| `Difficulty` | `Enum` | `EASY`, `HARD` | Difficulty level flag |
-| `GuessResult` | `Enum` | `TOO_HIGH`, `TOO_LOW`, `CORRECT`, `GAME_OVER` | Outcome of a single guess |
+| Name               | Type    | Value                                         | Purpose                                 |
+| ------------------ | ------- | --------------------------------------------- | --------------------------------------- |
+| `MIN_NUMBER`       | `int`   | `1`                                           | Lower bound of the guessing range       |
+| `MAX_NUMBER`       | `int`   | `100`                                         | Upper bound of the guessing range       |
+| `EASY_TURNS`       | `int`   | `10`                                          | Turns allowed on Easy difficulty        |
+| `HARD_TURNS`       | `int`   | `5`                                           | Turns allowed on Hard difficulty        |
+| `TYPEWRITER_DELAY` | `float` | `0.004`                                       | Seconds per character in logo animation |
+| `DIVIDER_CHAR`     | `str`   | `─`                                           | Character used to draw horizontal rules |
+| `DIVIDER_WIDTH`    | `int`   | `52`                                          | Width of horizontal rules in characters |
+| `Difficulty`       | `Enum`  | `EASY`, `HARD`                                | Difficulty level flag                   |
+| `GuessResult`      | `Enum`  | `TOO_HIGH`, `TOO_LOW`, `CORRECT`, `GAME_OVER` | Outcome of a single guess               |
 
 ---
 
@@ -164,6 +164,7 @@ difficulty. Called once after construction before the game loop starts.
 
 `guess(value: int) → GuessResult`
 The core game rule. Compares `value` against `answer`:
+
 - If wrong: decrements `turns_remaining`. If it hits 0, sets `over = True`
   and returns `GuessResult.GAME_OVER`.
 - If correct: sets `won = True` and `over = True`, returns `GuessResult.CORRECT`.
@@ -179,27 +180,27 @@ The caller (`main.py`) reads the returned enum and decides what to display.
 Owns all terminal output. Nothing else in the project calls `print()` directly
 except through this module.
 
-| Name | Description |
-|---|---|
-| `LOGO` | Multi-line ASCII art string for "GUESS THE NUMBER" |
-| `Colors` | Class of ANSI escape code constants: `CYAN`, `GREEN`, `RED`, `YELLOW`, `DIM`, `BOLD`, `RESET` |
-| `clear()` | Clears the terminal (`cls` on Windows, `clear` on Unix) |
-| `typewriter(text, delay)` | Prints text character by character with a configurable delay |
-| `divider()` | Prints a full-width horizontal rule in DIM color |
-| `print_result(message)` | Prints a message in GREEN (win / positive outcome) |
-| `print_error(message)` | Prints a message in RED (loss / invalid input) |
-| `get_keypress()` | Reads a single raw keypress without requiring Enter (uses `tty`/`termios`) |
-| `print_logo()` | Clears screen, animates the logo with `typewriter()`, pauses briefly |
+| Name                      | Description                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| `LOGO`                    | Multi-line ASCII art string for "GUESS THE NUMBER"                                            |
+| `Colors`                  | Class of ANSI escape code constants: `CYAN`, `GREEN`, `RED`, `YELLOW`, `DIM`, `BOLD`, `RESET` |
+| `clear()`                 | Clears the terminal (`cls` on Windows, `clear` on Unix)                                       |
+| `typewriter(text, delay)` | Prints text character by character with a configurable delay                                  |
+| `divider()`               | Prints a full-width horizontal rule in DIM color                                              |
+| `print_result(message)`   | Prints a message in GREEN (win / positive outcome)                                            |
+| `print_error(message)`    | Prints a message in RED (loss / invalid input)                                                |
+| `get_keypress()`          | Reads a single raw keypress without requiring Enter (uses `tty`/`termios`)                    |
+| `print_logo()`            | Clears screen, animates the logo with `typewriter()`, pauses briefly                          |
 
 **Color conventions:**
 
-| Color | Used for |
-|---|---|
-| CYAN + BOLD | Section headers |
-| GREEN | Correct guess, positive feedback |
-| RED | Wrong direction, errors, game over |
-| YELLOW | Key values (turns remaining) |
-| DIM | Instructions, hints, dividers |
+| Color       | Used for                           |
+| ----------- | ---------------------------------- |
+| CYAN + BOLD | Section headers                    |
+| GREEN       | Correct guess, positive feedback   |
+| RED         | Wrong direction, errors, game over |
+| YELLOW      | Key values (turns remaining)       |
+| DIM         | Instructions, hints, dividers      |
 
 ---
 
@@ -228,12 +229,12 @@ This project was built as part of a lesson on **Python scope and namespaces**.
 
 Python resolves names by searching four scopes in order:
 
-| Scope | Description | Example |
-|---|---|---|
-| **L**ocal | Inside the current function | A variable declared inside `guess()` |
+| Scope         | Description                           | Example                                                  |
+| ------------- | ------------------------------------- | -------------------------------------------------------- |
+| **L**ocal     | Inside the current function           | A variable declared inside `guess()`                     |
 | **E**nclosing | Outer function (for nested functions) | A variable in an outer function accessed by an inner one |
-| **G**lobal | Module-level | `EASY_TURNS = 10` at the top of a file |
-| **B**uilt-in | Python's built-in names | `len`, `range`, `print` |
+| **G**lobal    | Module-level                          | `EASY_TURNS = 10` at the top of a file                   |
+| **B**uilt-in  | Python's built-in names               | `len`, `range`, `print`                                  |
 
 ### Global Constants vs. the `global` Keyword
 
